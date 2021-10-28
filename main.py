@@ -3,8 +3,41 @@ from tkinter import *
 
 expression = ""
 
-print("Warning! Close this windows will cause the calculator to close")
-print("this version (0.1-Indev release) is still in development, use for testing purpose only. Thanks for using")
+print("Warning! Close this window will cause the calculator to close")
+print("this version (0.1.2-Indev release) is still in development, use for testing purpose only. Thanks for using")
+
+def sqrtpress():
+    gui = Tk()
+    gui.title("Calculate Your Square Root!")
+
+    canvas = Canvas(gui, width=400, height=300, relief='raised')
+    canvas.pack()
+
+    lab1 = Label(gui, text='Calculate The Square Root')
+    lab1.config(font=('helvetica', 14))
+    canvas.create_window(200, 25, window=lab1)
+
+    lab2 = Label(gui, text='Enter the  Number:')
+    lab2.config(font=('helvetica', 10))
+    canvas.create_window(200, 100, window=lab2)
+
+    entry1 = Entry(gui)
+    canvas.create_window(200, 140, window=entry1)
+
+    def get_SquareRoot():
+        a1 = entry1.get()
+
+        lab3 = Label(gui, text='The Square Root of ' + a1 + ' is:', font=('helvetica', 10))
+        canvas.create_window(200, 210, window=lab3)
+
+        lab4 = Label(gui, text=float(a1) ** 0.5, font=('helvetica', 10, 'bold'))
+        canvas.create_window(200, 230, window=lab4)
+
+    button = Button(gui, text=' Get the number ', fg='white', bg='gray',
+                    command=get_SquareRoot, height=1, width=16)
+    canvas.create_window(200, 180, window=button)
+
+    gui.mainloop()
 
 def clear():
   global expression
@@ -42,7 +75,6 @@ def equalpress():
 
     equation.set(total)
 
-    expression = ""
 
  except:
     equation.set(" Error, cannot calculate ")
@@ -53,7 +85,7 @@ if __name__ == "__main__":
 
   gui.configure(background="black")
 
-  gui.title("CreeperVN's Simple Calculator v.0.1 (Indev release)")
+  gui.title("CreeperVN's Simple Calculator v.0.1.2 (Indev release)")
 
   gui.geometry("934x380")
 
@@ -138,6 +170,10 @@ if __name__ == "__main__":
   roundbracketr = Button(gui, text=')', fg='white', bg='gray',
                           command=roundbracketrpress, height=4, width=32)
   roundbracketr.grid(row=6, column=2)
+
+  sqrt = Button(gui, text='√', fg='white', bg='gray',
+                          command=sqrtpress, height=4, width=32)
+  sqrt.grid(row=6, column=3)
 
   gui.mainloop()
 
